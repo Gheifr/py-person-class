@@ -28,10 +28,10 @@ def create_person_list(people: list[dict]) -> list[Person]:
         Person.insert_person(person)
 
     for p in people:
-        if "wife" in p.keys() and not p["wife"] is None:
+        if p.get("wife"):
             if Person.is_person_in_list(p["wife"]):
                 Person.update_spouse(Person.people[p["name"]], Person.people[p["wife"]], "wife")
-        elif "husband" in p.keys() and not p["husband"] is None:
+            elif p.get("husband"):
                 if Person.is_person_in_list(p["husband"]):
                     Person.update_spouse(Person.people[p["name"]], Person.people[p["husband"]], "husband")
 
